@@ -52,8 +52,8 @@ function generateQuestion() {
 
             case 1:
                 if (question.length > 1 && question.length < 5) {
-                    console.log(question.length);
-                    console.log(op_restrict);
+                    // console.log(question.length);
+                    // console.log(op_restrict);
                     if (!op_restrict.includes(question.length)) {
                         let op_index = Math.floor(Math.random() * 4);
                         question.push(operator[op_index]);
@@ -65,8 +65,8 @@ function generateQuestion() {
 
             case 2:
                 if (question.length > 1 && question.length < 5) {
-                    console.log(question.length);
-                    console.log(op_restrict);
+                    // console.log(question.length);
+                    // console.log(op_restrict);
                     if (!op_restrict.includes(question.length)) {
                         let op_index = Math.floor(Math.random() * 4);
                         question.push(operator[op_index]);
@@ -84,7 +84,7 @@ function generateQuestion() {
     }
 
     q = question;
-    console.log(question);
+    // console.log(question);
 }
 
 function renderClue() {
@@ -140,7 +140,7 @@ function boxSumbiting() {
                         } else {
                             row++;
                         }
-                        console.log(row);
+                        // console.log(row);
                     }
                 } else {
                     alert("Fill all box first");
@@ -167,8 +167,8 @@ function validationChecker() {
     let total = calculateInput(input_num);
     if (total != q_total) {
         alert("beda hasil");
-        console.log(total);
-        console.log(q_total);
+        // console.log(total);
+        // console.log(q_total);
     } else {
         return true
     }
