@@ -1,0 +1,89 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    box-sizing: border-box;
+    margin: auto;
+    width: 500px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box-content,
+.key {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row,
+.number,
+.operator {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #b5afaf;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.num,
+.op {
+    width: 31.4px;
+    height: 36.4px;
+    border: 1px solid #b5afaf;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box,
+.num,
+.op {
+    border-radius: 3px;
+}
+
+.del,
+.en {
+    width: 80px;
+}
+
+.keyboard-content {
+    margin-top: 50px;
+}
+
+.right {
+    background-color: green;
+}
+
+.miss {
+    background-color: yellow;
+}
+
+.wrong {
+    background-color: red;
+}
