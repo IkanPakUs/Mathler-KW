@@ -43,7 +43,7 @@ function generateQuestion() {
         switch (key) {
             case 0:
                 let num_index = Math.floor(Math.random() * 10);
-                if (num_index == 0) {
+                if (num[num_index] == 0) {
                     question.length > 1 ? operator.includes(question[num_index - 1]) ? "" : question.push(num[num_index]) : "";
                 } else {
                     question.push(num[num_index]);
