@@ -207,13 +207,24 @@ function concatNum(arr) {
 
 function calculateInput(input_num) {
     let num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    let list_operator = input_num.filter(v => !num.includes(v) && v != "/" && v != "*");
+    let list_operator = input_num.filter(v => !num.includes(v));
     let _input_num = [...input_num];
-
-    _input_num = divide(_input_num);
-    _input_num = multipli(_input_num);
-
     
+    list_operator.forEach(v => {
+        switch (v) {
+            case "/":
+                _input_num = divide(_input_num);
+                break;
+
+            case "*":
+                _input_num = multipli(_input_num);
+                break;
+        
+            default:
+                break;
+        }    
+    });
+
     list_operator.forEach(v => {
         switch (v) {
             case "-":
@@ -228,7 +239,6 @@ function calculateInput(input_num) {
                 break;
         }    
     });
-    
     return _input_num[0];
 }
 
