@@ -83,9 +83,18 @@ function generateQuestion() {
         question.length === 6 ? finish = true : finish = false;
     }
 
-    q = question;
+    let q_validate = questionValidator(question);
+    q_validate ? q = question : generateQuestion();
+
     // console.log(question);
 }
+
+function questionValidator(question) {
+    let q_num = concatNum(question);
+    let q_total = calculateInput(q_num);
+
+    return parseInt(q_total) === q_total;
+}   
 
 function renderClue() {
     let temp_q = [...q];
@@ -199,7 +208,7 @@ function concatNum(arr) {
 function calculateInput(input_num) {
     let num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let list_operator = input_num.filter(v => !num.includes(v) && v != "/" && v != "*");
-    let _input_num = input_num;
+    let _input_num = [...input_num];
 
     _input_num = divide(_input_num);
     _input_num = multipli(_input_num);
