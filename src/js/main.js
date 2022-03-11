@@ -44,7 +44,7 @@ function generateQuestion() {
             case 0:
                 let num_index = Math.floor(Math.random() * 10);
                 if (num[num_index] == 0) {
-                    question.length > 1 ? operator.includes(question[num_index - 1]) ? "" : question.push(num[num_index]) : "";
+                    question.length < 1 ? "" : operator.includes(question[question.length - 1]) ? "" : question.push(num[num_index]);
                 } else {
                     question.push(num[num_index]);
                 }
@@ -126,6 +126,7 @@ function boxDeleting() {
                 input_row[row].pop();
                 let target_el = input_row[row].length + 1;
                 let el = $(`[row=${row.toString()}] [col=${target_el.toString()}]`);
+                el.removeClass('filled');
                 el.html("");
             }
         }       
@@ -165,6 +166,7 @@ function boxWrite(key) {
         let input_length = input_row[row].length;
     
         let el = $(`[row=${row.toString()}] [col=${input_length.toString()}]`);
+        el.addClass('filled');
         el.html(key);
     }
 }
@@ -246,7 +248,7 @@ function divide(input_num) {
     let divide_index = input_num.indexOf("/");
     
     if (divide_index >= 0) {
-        let divide_total = parseInt(input_num[divide_index - 1]) / parseInt(input_num[divide_index + 1]);
+        let divide_total = input_num[divide_index - 1] / input_num[divide_index + 1];
         input_num.splice(divide_index - 1, 3, divide_total);
     }
     return input_num;
@@ -285,9 +287,18 @@ function sub(input_num) {
 function showInputClue() {
     let input = [...input_row[row]];
 
+    let right_num = [];
+    let miss_num = [];
+    let wrong_num = [];
+
     input.forEach((v, i) => v == q[i] ? $(`[row=${row.toString()}] [col=${i + 1}]`).addClass("right")  : q.includes(v) ? $(`[row=${row.toString()}] [col=${i + 1}]`).addClass("miss") : $(`[row=${row.toString()}] [col=${i + 1}]`).addClass("wrong"));
+    input.forEach((v, i) => v == q[i] ? right_num.push(v) : q.includes(v) ? miss_num.push(v) : wrong_num.push(v));
     input = input.map((v, i) => v == q[i] ? true : false);
-    
+
+    right_num.forEach((v, i) => $(`[key-value=${v}]`).addClass("right"))
+    miss_num.forEach((v, i) => $(`[key-value=${v}]`).addClass("miss"))
+    wrong_num.forEach((v, i) => $(`[key-value=${v}]`).addClass("wrong"))
+
     return !input.includes(false);
 }
 
