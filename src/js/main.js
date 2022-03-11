@@ -22,8 +22,7 @@ $(document).ready(function () {
     generateQuestion();
     renderClue();
     boxTyping();
-    boxDeleting();
-    boxSumbiting();
+    numClicked();
 });
 
 // ********************** //
@@ -115,49 +114,75 @@ function boxTyping() {
             }
         }
     });
-}
 
-function boxDeleting() {
     $(document).on("keyup", (event) => {
         let key_code = event.which;
         
         if (row > 0 && row <= 6) {
             if (key_code === 8) {
-                input_row[row].pop();
-                let target_el = input_row[row].length + 1;
-                let el = $(`[row=${row.toString()}] [col=${target_el.toString()}]`);
-                el.removeClass('filled');
-                el.html("");
+                boxDeleting();
             }
-        }       
+        }
     });
-}
 
-function boxSumbiting() {
     $(document).keypress( (event) => {
         let key_code = event.which;
 
         if (row > 0 && row <= 6) {
-            
             if (key_code === 13) {
-                if (input_row[row].length === 6) {
-                    let checker = validationChecker();
-                    if (checker) {
-                        let answer = showInputClue();
-    
-                        if (answer) {
-                            row = 0;
-                        } else {
-                            row++;
-                        }
-                        // console.log(row);
-                    }
-                } else {
-                    alert("Fill all box first");
-                }
+                boxSumbiting();
             }
         }
     });
+}
+
+function numClicked() {
+    let operator = {"multipli" : "*", "divide" : "/", "sum" : "+", "sub" : "-"};
+
+    $('.num').click((e) => {
+        let key_value = $(e.currentTarget).attr('key-value'); 
+        boxWrite(key_value);
+    });
+
+    $('.op').click((e) => {
+        let key_value = $(e.currentTarget).attr('key-value'); 
+
+        if (key_value == "del") {
+            boxDeleting();
+        } else if (key_value == "en") {
+            boxSumbiting();
+        } else {
+            let key = operator[key_value];
+            boxWrite(key);
+        }
+    });
+}
+
+function boxDeleting() {
+    
+    input_row[row].pop();
+    let target_el = input_row[row].length + 1;
+    let el = $(`[row=${row.toString()}] [col=${target_el.toString()}]`);
+    el.removeClass('filled');
+    el.html("");
+}
+
+function boxSumbiting() {
+    if (input_row[row].length === 6) {
+        let checker = validationChecker();
+
+        if (checker) {
+            let answer = showInputClue();
+
+            if (answer) {
+                row = 0;
+            } else {
+                row++;
+            }
+        }
+    } else {
+        alert("Fill all box first");
+    }
 }
 
 function boxWrite(key) {
@@ -167,7 +192,12 @@ function boxWrite(key) {
     
         let el = $(`[row=${row.toString()}] [col=${input_length.toString()}]`);
         el.addClass('filled');
+        el.addClass('fill-animate');
         el.html(key);
+
+        setTimeout(() => {
+            el.removeClass('fill-animate');
+        }, 100);
     }
 }
 
@@ -178,8 +208,6 @@ function validationChecker() {
     let total = calculateInput(input_num);
     if (total != q_total) {
         alert("beda hasil");
-        // console.log(total);
-        // console.log(q_total);
     } else {
         return true
     }
@@ -291,13 +319,16 @@ function showInputClue() {
     let miss_num = [];
     let wrong_num = [];
 
+    let op_object = {"/" : "divide", "*" : "multipli", "+" : "sum", "-" : "sub"};
+    let operator = ["-", "+", "*", "/"];
+
     input.forEach((v, i) => v == q[i] ? $(`[row=${row.toString()}] [col=${i + 1}]`).addClass("right")  : q.includes(v) ? $(`[row=${row.toString()}] [col=${i + 1}]`).addClass("miss") : $(`[row=${row.toString()}] [col=${i + 1}]`).addClass("wrong"));
     input.forEach((v, i) => v == q[i] ? right_num.push(v) : q.includes(v) ? miss_num.push(v) : wrong_num.push(v));
     input = input.map((v, i) => v == q[i] ? true : false);
 
-    right_num.forEach((v, i) => $(`[key-value=${v}]`).addClass("right"))
-    miss_num.forEach((v, i) => $(`[key-value=${v}]`).addClass("miss"))
-    wrong_num.forEach((v, i) => $(`[key-value=${v}]`).addClass("wrong"))
+    right_num.forEach((v, i) => operator.includes(v) ? $(`[key-value=${op_object[v]}]`).addClass("right") : $(`[key-value=${v}]`).addClass("right"))
+    miss_num.forEach((v, i) => operator.includes(v) ? $(`[key-value=${op_object[v]}]`).addClass("miss") : $(`[key-value=${v}]`).addClass("miss"))
+    wrong_num.forEach((v, i) => operator.includes(v) ? $(`[key-value=${op_object[v]}]`).addClass("wrong") : $(`[key-value=${v}]`).addClass("wrong"))
 
     return !input.includes(false);
 }

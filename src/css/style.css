@@ -24,6 +24,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 30px;
 }
 
 .box-content,
@@ -63,6 +66,8 @@ body {
     align-items: center;
     background-color: #E2E8F0;
     color: rgb(48, 48, 48);
+    pointer-events: all;
+    cursor: pointer;
 }
 
 .box,
@@ -102,8 +107,16 @@ body {
     background-color: #94A3B8;
     border-color: #94A3B8;
     color: #fff;
+    pointer-events: none;
 }
 
 .filled {
     border-color: rgb(48, 48, 48);
+    transition: all 0.1s ease-in-out;
+}
+
+.filled.fill-animate {
+    width: 54px;
+    height: 54px;
+    margin: 0px;
 }
