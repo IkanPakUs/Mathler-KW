@@ -289,7 +289,7 @@ function multipli(input_num) {
     let multipli_index = input_num.indexOf("*");
 
     if (multipli_index >= 0) {
-        let multipli_total = parseInt(input_num[multipli_index - 1]) * parseInt(input_num[multipli_index + 1]);
+        let multipli_total = input_num[multipli_index - 1] * input_num[multipli_index + 1];
         input_num.splice(multipli_index - 1, 3,  multipli_total);
     }
     return input_num;
@@ -299,7 +299,7 @@ function sum(input_num) {
     let sum_index = input_num.indexOf("+");
 
     if (sum_index >= 0) {
-        let sum_total = parseInt(input_num[sum_index - 1]) + parseInt(input_num[sum_index + 1]);
+        let sum_total = input_num[sum_index - 1] + input_num[sum_index + 1];
         input_num.splice(sum_index - 1, 3, sum_total);
     }
     return input_num;
@@ -309,7 +309,7 @@ function sub(input_num) {
     let sub_index = input_num.indexOf("-");
 
     if (sub_index >= 0) {
-        let sub_total = parseInt(input_num[sub_index - 1]) - parseInt(input_num[sub_index + 1]);
+        let sub_total = input_num[sub_index - 1] - input_num[sub_index + 1];
         input_num.splice(sub_index - 1, 3, sub_total);
     }
     return input_num;
