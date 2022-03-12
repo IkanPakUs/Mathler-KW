@@ -94,7 +94,7 @@ function questionValidator(question) {
     let q_num = concatNum(question);
     let q_total = calculateInput(q_num);
 
-    return parseInt(q_total) === q_total;
+    return parseInt(q_total) === q_total && q_total > 0 && q_total < 1000;
 }   
 
 function renderClue() {
@@ -178,6 +178,7 @@ function boxSumbiting() {
 
             if (answer) {
                 row = 0;
+                alert("YEY YOUR ANSWER IS RIGHT");
             } else {
                 row++;
             }
