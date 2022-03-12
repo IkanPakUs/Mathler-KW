@@ -12,7 +12,42 @@
 
 <body>
 
-    <div class="container">
+    <div class="how-to-play">
+        <div class="modal">
+            <div class="modal-header">
+                <h4>Cara bermain</h4>
+                <div class="close-btn">X</div>
+            </div>
+            <div class="instruction">
+                <p>Cari hitungan tersembunyi dalam 6 kali percobaan. setiap kali anda menebak, anda akan diberi petunjuk
+                    dalam bentuk warna.</p>
+                <div class="row">
+                    <div class="box right">1</div>
+                    <div class="box wrong">0</div>
+                    <div class="box miss">+</div>
+                    <div class="box wrong">6</div>
+                    <div class="box right">/</div>
+                    <div class="box wrong">3</div>
+                </div>
+
+                <ul class="instruction-list">
+                    <li>1 dan / berarti angka/bilangan yang benar dan ditempat yang benar </li>
+                    <li>+ berarti angka/operator yang benar tetapi ditempat yang salah</li>
+                    <li>0, 6, dan 3 berarti angka/operator yang salah</li>
+                </ul>
+            </div>
+            <div class="rules">
+                <h4>Aturan bermain</h4>
+                <ul class="rules-list">
+                    <li>angka dan operator bisa muncul 2 kali</li>
+                    <li>bagi atau kali didahulukan daripada tambah atau kurang</li>
+                    <li>angka 0 tidak mungkin berada di paling depan sebuah bilangan (04)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container modal-active">
         <div class="header">
             <div class="nav">
                 <div class="icon">?</div>

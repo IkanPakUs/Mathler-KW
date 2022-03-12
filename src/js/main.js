@@ -23,6 +23,8 @@ $(document).ready(function () {
     renderClue();
     boxTyping();
     numClicked();
+
+    showInstruction();
 });
 
 // ********************** //
@@ -333,4 +335,16 @@ function showInputClue() {
     return !input.includes(false);
 }
 
+function showInstruction() {
+    $('.icon').click(() => {
+        $('.how-to-play').addClass('active');
+    });
 
+    $('.close-btn').click(() => {
+        $('.how-to-play').removeClass('active');
+    });
+
+    $('.how-to-play').click(() => {
+        $('.how-to-play').removeClass('active');
+    });
+}
