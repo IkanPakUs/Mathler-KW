@@ -99,6 +99,7 @@ body .container.modal-active {
     margin-top: 50px;
 }
 
+.instruction .row .box.right,
 .box-content .row .box.right,
 .keyboard-content .key .number .num.right,
 .keyboard-content .key .operator .op.right {
